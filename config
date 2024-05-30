@@ -659,8 +659,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 1%+ && dunsti
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 1%- && dunstify -t 1000 -r 2539 -u normal "  $(xbacklight -get | cut -d '.' -f 1)%"  -h int:value:$(xbacklight -get | cut -d '.' -f 1) -h string:hlcolor:#7f7fff
 
 # Compositor
-exec_always --no-startup-id picom  --backend glx --glx-no-stencil --glx-no-rebind-pixmap --detect-rounded-corners --corner-radius 12 --shadow-radius 16 -l -3 -t -3
-exec_always --no-startup-id xborders --border-radius 12
+# exec_always --no-startup-id xborders --border-radius 16
+exec_always --no-startup-id picom --blur-method dual_kawase  --backend glx --corner-radius 12 --shadow-radius 12 -l -12 -t -12 --vsync
 
 default_border pixel 0
 exec --no-startup-id optimus-manager-qt
