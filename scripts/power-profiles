@@ -118,12 +118,26 @@ fi
 # default_menu_options defined as an associative array
 typeset -A default_menu_options
 
+option_1="performance"
+option_2="balanced"
+option_3="power-saver"
 # The default options with keys/commands
+status=$(powerprofilesctl get)
+if [ "$option_1" == "$status" ]; then
+	option_1="$option_1 (current)"
+fi
 
+if [ "$option_2" == "$status" ]; then
+	option_2="$option_2 (current)"
+fi
+
+if [ "$option_3" == "$status" ]; then
+	option_3="$option_3 (current)"
+fi
 default_menu_options=(
-  [ Performance]="powerprofilesctl set performance"
-  [ Balanced]="powerprofilesctl set balanced"
-  [ Power Saver]="powerprofilesctl set power-saver"
+  [ $option_1]="powerprofilesctl set performance"
+  [  $option_2]="powerprofilesctl set balanced"
+  [ $option_3]="powerprofilesctl set power-saver"
   [ Cancel]=""
 )
 
