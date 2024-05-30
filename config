@@ -661,6 +661,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 1%- && duns
 # Compositor
 # exec_always --no-startup-id xborders --border-radius 16
 exec_always --no-startup-id picom --blur-method dual_kawase  --backend glx --corner-radius 12 --shadow-radius 12 -l -12 -t -12 --vsync
+bindsym XF86Calculator exec rofi -show calc -no-show-match -no-sort
+bindsym XF86HomePage exec microsoft-edge-stable
+bindsym XF86Search exec rofi -show drun
+bindsym XF86MyComputer exec ~/.config/rofi/launchers/rofi-file-selector/rofi-file-selector.sh
+bindsym XF86LaunchA exec rofi -show window
+bindsym XF86Explorer exec thunar
+bindsym XF86Tools exec neovide ~/.config/i3/config 
 
 default_border pixel 0
 exec --no-startup-id optimus-manager-qt
