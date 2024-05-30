@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+echo "$(optimus-manager --print-mode | awk '{print $NF}'| cut -c 1-3)"

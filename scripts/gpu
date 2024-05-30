@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+current_mode=$(optimus-manager --print-mode | awk '{print $NF}')
+option_1="integrated"
+option_2="nvidia"
+option_3="hybrid"
+if [ "$option_1" == "$current_mode" ]; then
+	option_1="$option_1 (current)"
+fi
+
+if [ "$option_2" == "$current_mode" ]; then
+	option_2="$option_2 (current)"
+fi
+
+if [ "$option_3" == "$current_mode" ]; then
+	option_3="$option_3 (current)"
+fi
+# Display a menu using Rofi
+selected_mode=$(
+	rofi -dmenu -p "Select GPU mode:" <<EOF
+$option_1
+$option_2
+$option_3
+EOF
+)
+
+# Set the selected GPU mode using optimus-manager
+case "$selected_mode" in
+"integrated")
+	optimus-manager --switch integrated --no-confirm
+	;;
+"nvidia")
+	optimus-manager --switch nvidia --no-confirm
+	;;
+"hybrid")
+	optimus-manager --switch hybrid --no-confirm
+	;;
+*)
+	exit
+	;;
+esac
