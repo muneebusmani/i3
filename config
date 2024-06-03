@@ -173,7 +173,9 @@ bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
 # start a terminal
 # bindsym $mod+Return exec --no-startup-id warp-terminal
-bindsym $mod+Return exec --no-startup-id kitty
+# bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id alacritty
+# bindsym Ctrl+$mod+Return exec --no-startup-id kitty --session api.conf
 
 # kill focused window
 bindsym $mod+q kill
@@ -659,8 +661,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 1%+ && dunsti
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 1%- && dunstify -t 1000 -r 2539 -u normal "  $(xbacklight -get | cut -d '.' -f 1)%"  -h int:value:$(xbacklight -get | cut -d '.' -f 1) -h string:hlcolor:#7f7fff
 
 # Compositor
-# exec_always --no-startup-id xborders --border-radius 16
-exec_always --no-startup-id picom --blur-method dual_kawase  --backend glx --corner-radius 12 --shadow-radius 12 -l -12 -t -12 --vsync
+exec_always --no-startup-id xborders --border-radius 12
+exec_always --no-startup-id picom 
 bindsym XF86Calculator exec rofi -show calc -no-show-match -no-sort
 bindsym XF86HomePage exec microsoft-edge-stable
 bindsym XF86Search exec rofi -show drun
