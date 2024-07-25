@@ -23,7 +23,7 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: JetbrainsMono Nerd Font Regular 10
+font pango: Noto Sans Regular 10
 #
 ## set the mod key to the winkey:
 set $mod Mod4
@@ -48,7 +48,7 @@ workspace_layout default
 ##############################
 
 #border indicator on windows:
-new_window pixel 1
+new_window pixel 0
 
 # thin borders
 # hide_edge_borders both
@@ -307,11 +307,11 @@ bindsym $mod+Shift+f exec --no-startup-id ~/.config/i3/scripts/rofi-bluetooth
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:"
-set $ws2 "2:󰨞"
-set $ws3 "3:󰇩"
-set $ws4 "4:"
-set $ws5 "5:󰇮"
-set $ws6 "6:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:󰇮"
+set $ws5 "5:󰇩"
+set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
 set $ws9 "9:"
@@ -327,20 +327,30 @@ set $ws10 "10:"
 #workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
-assign [class="Xfce4-terminal"] $ws1
+assign [class="alacritty"] $ws1
 assign [class="(?i)firefox"] $ws2
-assign [class="Thunar"] $ws3
+assign [class="Whatsapp-for-linux"] $ws3
 assign [class="thunderbird"] $ws4
-assign [class="TelegramDesktop"] $ws5
+# exec --no-startup-id alacritty
+# exec --no-startup-id firefox
+# exec --no-startup-id whatsapp-for-linux
+# exec --no-startup-id thunderbird
+exec --no-startup-id nm-applet
+exec --no-startup-id bluez
+exec --no-startup-id pa-applet
+exec --no-startup-id xfce4-clipman
+exec --no-startup-id nvidia-oc 135 225
+# exec --no-startup-id pavucontrol
+# assign [class="TelegramDesktop"] $ws5
 
 # automatic set focus new window if it opens on another workspace than the current:
-for_window [class=Xfce4-terminal] focus
-for_window [class=(?i)firefox] focus
-for_window [class=Thunar] focus
-for_window [class=Thunderbird] focus
-for_window [class=TelegramDesktop] focus
+# for_window [class=Xfce4-terminal] focus
+# for_window [class=(?i)firefox] focus
+# for_window [class=Thunar] focus
+# for_window [class=Thunderbird] focus
+# for_window [class=TelegramDesktop] focus
 for_window [class="^.*"] border pixel 0
-for_window [class=".*"] title_format "" 
+for_window [class="^.*"] title_format "" 
 
 ##############
 # compositor #
@@ -390,7 +400,7 @@ exec --no-startup-id dex --autostart --environment i3
 #exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3 
 
 # num lock activated
-exec --no-startup-id numlockx on
+exec --no-startup-id numlockx off
 
 # configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
 #exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
@@ -457,7 +467,7 @@ exec_always --no-startup-id autotiling
 #exec --no-startup-id nm-applet
 
 # clipman-applet
-exec --no-startup-id xfce4-clipman
+# exec --no-startup-id xfce4-clipman
 
 ##################
 # floating rules #
@@ -467,11 +477,13 @@ exec --no-startup-id xfce4-clipman
 for_window [class="Yad" instance="yad"] floating enable
 for_window [class="Galculator" instance="galculator"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-
+for_window [class="firefox" title="Library"] floating enable
+for_window [class="Tabnine_chat"] floating enable
 for_window [class="Blueman-manager" instance="blueman-manager"] floating enable
 for_window [class="Whatsapp-for-linux" instance="whatsapp-for-linux"] floating enable
 for_window [class="Btrfs Assistant" instance="btrfs-assistant-bin"] floating enable
 for_window [class="Lxappearance" instance="lxappearance"] floating enable
+for_window [class="Io.elementary.switchboard" instance="io.elementary.switchboard"] floating enable
 
 # set floating (nontiling) for special apps
 for_window [class="Xsane" instance="xsane"] floating enable
@@ -669,10 +681,12 @@ bindsym XF86Search exec rofi -show drun
 bindsym XF86MyComputer exec ~/.config/rofi/launchers/rofi-file-selector/rofi-file-selector.sh
 bindsym XF86LaunchA exec rofi -show window
 bindsym XF86Explorer exec thunar
-bindsym XF86Tools exec neovide ~/.config/i3/config 
+bindsym XF86Tools exec alacritty -e nvim ~/.config/i3/config 
 
 default_border pixel 0
-exec --no-startup-id optimus-manager-qt
-exec --no-startup-id blueman-tray
+# exec --no-startup-id optimus-manager-qt
+# exec --no-startup-id blueman-tray
+# exec --no-startup-id alacritty --class todolist -e nvim ~/todos.md
+# for_window [class="todolist"] move scratchpad
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
